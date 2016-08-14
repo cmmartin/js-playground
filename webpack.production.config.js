@@ -4,27 +4,27 @@ var loaders = require('./webpack.loaders');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-	entry: [
-		'./example/index.js' // Your appʼs entry point
-	],
-	output: {
-		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js'
-	},
-	resolve: {
-		extensions: ['', '.js', '.jsx']
-	},
-	module: {
-		loaders: loaders
-	},
-	plugins: [
-		new CopyWebpackPlugin([
-			{from: './example/index.html'}
-		]),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: '"production"'
-			}
-		})
-	]
+  entry: [
+    './example/index.js' // Your appʼs entry point
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    loaders: loaders
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      {from: './example/index.html'}
+    ]),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    })
+  ]
 };
