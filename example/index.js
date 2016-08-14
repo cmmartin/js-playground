@@ -18,7 +18,7 @@ const editorOptions = {
 const code = `
 
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import GoogleMap from 'google-map-react'
 
 const K_WIDTH = 40
@@ -53,7 +53,7 @@ const map = (
   </GoogleMap>
 )
 
-ReactDOM.render(map, document.body.children[0])
+render(map, document.body.children[0])
 
 `
 
