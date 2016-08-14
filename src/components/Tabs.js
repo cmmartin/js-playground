@@ -2,22 +2,22 @@ import React, { Component, PropTypes } from 'react'
 
 export default class REPL extends Component {
 
-	static propTypes = {
-		tabs: PropTypes.array,
-		activeTab: PropTypes.any,
-		onActiveTabChange: PropTypes.func
-	}
+  static propTypes = {
+    tabs: PropTypes.array,
+    activeTab: PropTypes.any,
+    onActiveTabChange: PropTypes.func
+  }
 
-	render() {
-		const {
-			tabs,
-			activeTab,
-			onActiveTabChange,
-			className,
-		} = this.props
+  render() {
+    const {
+      tabs,
+      activeTab,
+      onActiveTabChange,
+      className,
+    } = this.props
 
-		return (
-			<div className={className}>
+    return (
+      <div className={className}>
         <ul className="inner">
           {tabs.map(tab => (
             <li key={tab} className={ 'tab' + (tab === activeTab ? ' active' : '') }>
@@ -30,6 +30,6 @@ export default class REPL extends Component {
           ))}
         </ul>
       </div>
-		)
-	}
+    )
+  }
 }

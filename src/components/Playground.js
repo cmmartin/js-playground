@@ -9,12 +9,12 @@ import invariant from 'invariant'
 @Dimensions()
 export default class Playground extends Component {
 
-	static propTypes = {
-		containerWidth: PropTypes.number.isRequired,
-		containerHeight: PropTypes.number.isRequired,
+  static propTypes = {
+    containerWidth: PropTypes.number.isRequired,
+    containerHeight: PropTypes.number.isRequired,
     initialContents: PropTypes.string,
     onRuntimeError: PropTypes.func,
-	}
+  }
 
   static defaultProps = {
     initialContent: `
@@ -96,27 +96,27 @@ export default class Playground extends Component {
     if (onRuntimeError) onRuntimeError(err)
   }
 
-	render() {
-		const {
-			head,
-			containerWidth,
-			containerHeight,
-			style,
-			children,
-			className,
-		} = this.props
+  render() {
+    const {
+      head,
+      containerWidth,
+      containerHeight,
+      style,
+      children,
+      className,
+    } = this.props
 
-		const styles = {
-			width: containerWidth,
-			height: containerHeight,
+    const styles = {
+      width: containerWidth,
+      height: containerHeight,
       ...style
-		}
+    }
 
-		return (
+    return (
       <iframe 
         style={styles} 
         className={className} 
       />
-		)
-	}
+    )
+  }
 }
