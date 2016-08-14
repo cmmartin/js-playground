@@ -29,7 +29,7 @@ export default function makeBabelHOC() {
       static defaultProps = {
         code: '// hello world',
         babelOptions: { 
-          presets: ['react', 'es2015'] 
+          presets: ['react', 'es2015', 'stage-1'] 
         }
       }
 
