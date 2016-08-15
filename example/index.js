@@ -16,9 +16,13 @@ const editorOptions = {
   theme: 'zenburn'
 }
 
+const babelOptions = {
+  presets: ['react', 'es2015']
+}
+
 export class REPLDemo extends Component {
 
-  state = { code }
+  state = { code, babelOptions }
 
   render() {
     return (
@@ -31,6 +35,10 @@ export class REPLDemo extends Component {
         }}
         onCodeChange={(code) => this.setState({ code })}  
         options={editorOptions}
+        babelOptions={this.state.babelOptions}
+        onBabelOptionsChange={
+          (opts) => this.setState({ babelOptions: opts })
+        }
       />
     )
   }

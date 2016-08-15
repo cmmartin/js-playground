@@ -1,13 +1,25 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import CodeEditor from 'react-codemirror'
-import Tabs from './components/Tabs'
 import Playground from './components/Playground'
 import Babel from './components/Babel'
 import ParseError from './components/ParseError'
-import debounce from 'lodash/debounce'
+import {Tab, Tabs} from 'react-toolbox/lib/tabs'
+import tabsTheme from './themes/tabs.scss'
+import Checkbox from 'react-toolbox/lib/checkbox'
+import checkboxTheme from './themes/checkbox.scss'
 
 const tabs = ['es🚀', 'es5', 'ast']
+
+const presets = [
+  'es2015',
+  'es2015-loose',
+  'react',
+  'stage-3',
+  'stage-2',
+  'stage-1',
+  'stage-0',
+]
 
 @Babel()
 export default class REPL extends Component {
@@ -23,7 +35,7 @@ export default class REPL extends Component {
       }),
       error: PropTypes.instanceOf(Error),
     }),
-    options: CodeEditor.propTypes.options
+    options: CodeEditor.propTypes.options,
   }
 
   static defaultProps = {
@@ -38,11 +50,12 @@ export default class REPL extends Component {
   }
 
   state = {
-    tab: 'es🚀',
-    runtimeError: null
+    tab: 0,
+    runtimeError: null,
   }
 
   render() {
+
     const { 
       tab, 
       runtimeError 
@@ -69,27 +82,50 @@ export default class REPL extends Component {
           <Playground 
             code={babel.result.code}
             dependencies={dependencies}
-            style={{ outline: 0 }}
             onRuntimeError={ (e) => this.setState({ runtimeError: e }) }
           />
         </div>
         <div className="code">
           <div className="inner">
-            <Tabs 
-              className="tabs"
-              tabs={tabs} 
-              activeTab={tab} 
-              onActiveTabChange={
-                (tab) => this.setState({ tab })
-              } 
-            />
-            <div className="editor">
-              { this._renderTab(tab) }
+            <div className="presets">
+              <div className="inner">
+                {presets.map(preset => (
+                  <Checkbox
+                    key={preset}
+                    theme={checkboxTheme}
+                    checked={!!~babel.options.presets.indexOf(preset)}
+                    label={preset}
+                    onChange={this._onPresetToggled.bind(this, preset)}
+                  />
+                ))}
+              </div>
             </div>
+            <Tabs theme={tabsTheme} index={tab} onChange={(tab) => this.setState({ tab })}>
+              {tabs.map(t => (
+                <Tab key={t} label={t}>
+                  <div className="editor">
+                    { this._renderTab(tabs[tab]) }
+                  </div>
+                </Tab>
+              ))}
+            </Tabs>
           </div>
         </div>
       </section>
     )
+  }
+
+  _onPresetToggled(preset, checked) {
+    const { babel } = this.props
+    if (checked) {
+      babel.onOptionsChange({ 
+        presets: [ ...babel.options.presets, preset ] 
+      })
+    } else {
+      babel.onOptionsChange({
+        presets: babel.options.presets.filter(p => p !== preset)
+      })
+    }
   }
 
   _renderTab(tab) {
