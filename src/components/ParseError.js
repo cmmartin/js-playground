@@ -16,6 +16,7 @@ export default function ({ children }) {
     top: 0,
     left: 0,
     right: 0,
+    
   }
 
   return (

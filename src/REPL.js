@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom'
 import CodeEditor from 'react-codemirror'
 import Playground from './components/Playground'
 import Babel from './components/Babel'
-import ParseError from './components/ParseError'
-import {Tab, Tabs} from 'react-toolbox/lib/tabs'
+import Tabs from 'react-toolbox/lib/tabs/Tabs'
+import Tab from 'react-toolbox/lib/tabs/Tab'
 import tabsTheme from './themes/tabs.scss'
-import Checkbox from 'react-toolbox/lib/checkbox'
+import Checkbox from 'react-toolbox/lib/checkbox/Checkbox'
 import checkboxTheme from './themes/checkbox.scss'
+
 
 const tabs = ['es🚀', 'es5', 'ast']
 
@@ -75,9 +76,9 @@ export default class REPL extends Component {
       <section className="repl">
         <div className="playground">
           {(babel.error || runtimeError) &&  (
-            <ParseError>
+            <parseerror>
               { (babel.error || runtimeError).toString() }
-            </ParseError>
+            </parseerror>
           )}
           <Playground 
             code={babel.result.code}
@@ -102,7 +103,7 @@ export default class REPL extends Component {
             </div>
             <Tabs theme={tabsTheme} index={tab} onChange={(tab) => this.setState({ tab })}>
               {tabs.map(t => (
-                <Tab key={t} label={t}>
+                <Tab key={t} label={t} theme={tabsTheme}>
                   <div className="editor">
                     { this._renderTab(tabs[tab]) }
                   </div>
