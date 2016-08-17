@@ -8,7 +8,7 @@ import Tab from 'react-toolbox/lib/tabs/Tab'
 import tabsTheme from './themes/tabs.scss'
 import Checkbox from 'react-toolbox/lib/checkbox/Checkbox'
 import checkboxTheme from './themes/checkbox.scss'
-
+import editorTheme from './themes/editor.scss'
 
 const tabs = ['es🚀', 'es5', 'ast']
 
@@ -46,7 +46,8 @@ export default class REPL extends Component {
     dependencies: {},
     options: {
       mode: 'jsx',
-      lineNumbers: true
+      lineNumbers: true,
+      theme: 'one-dark'
     }
   }
 

@@ -34,7 +34,7 @@
 
 html {
   .fill();
-  font-size: 62.5%;
+  font-size: 70%;
 }
 
 body {
@@ -43,18 +43,23 @@ body {
 }
 
 parseerror {
-  font-family: source-code-pro, Menlo, Consolas, Monaco, "Andale Mono", "Courier New", monospace;
-  font-size: 13px;
+  font-family: "Courier New", monospace;
+  font-size: 1.5rem;
+  unicode-bidi: embed;
+  white-space: pre;
   line-height: 1.4;
   color: rgb(255, 255, 255);
   letter-spacing: -0.05rem;
-  padding: 0.5rem;
+  padding: 1rem;
   background: rgb(242, 119, 122);
-  border-bottom: 1px solid rgb(239, 91, 95);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #react-mount-node {
@@ -70,7 +75,7 @@ parseerror {
 
     > .code {
       .fill();
-      background-color: #363636;
+      background-color: darken(#282C34, 5%);
       > .inner {
         .column();
 
@@ -78,6 +83,7 @@ parseerror {
           .fill();
           height: 40px;
           padding: 0 1.5rem;
+          background-color: darken(#282C34, 10%);
           > .inner {
             .row();
             overflow: visible;
@@ -95,8 +101,10 @@ parseerror {
   .fill();
   > .ReactCodeMirror {
     .fill();
+    padding-top: 0.5rem;
+    background-color: #282C34;
     .CodeMirror {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-family: source-code-pro, Menlo, Consolas, Monaco, "Andale Mono", "Courier New", monospace;
       .fill();
     }

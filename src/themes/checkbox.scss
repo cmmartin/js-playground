@@ -1,6 +1,7 @@
 @import "~react-toolbox/lib/_colors";
 @import "~react-toolbox/lib/_globals";
 @import "~react-toolbox/lib/_mixins";
+$color-primary: #6CAFF2;
 
 $checkbox-color: $color-primary !default;
 $checkbox-disabled-color: rgba($color-white, 0.26) !default;

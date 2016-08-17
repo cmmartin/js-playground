@@ -4,20 +4,13 @@ import REPL from '../src/REPL'
 import GoogleMap from 'google-map-react'
 
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/zenburn.css'
 import 'codemirror/mode/jsx/jsx'
 import './example.less'
 
-import code from 'raw!./example-code.sample.js'
-
-const editorOptions = {
-  mode: 'jsx',
-  lineNumbers: true,
-  theme: 'zenburn'
-}
+import code from 'raw!./example-code-markers.sample.js'
 
 const babelOptions = {
-  presets: ['react', 'es2015']
+  presets: ['react', 'es2015', 'stage-1']
 }
 
 export class REPLDemo extends Component {
@@ -34,7 +27,6 @@ export class REPLDemo extends Component {
           'google-map-react': GoogleMap
         }}
         onCodeChange={(code) => this.setState({ code })}  
-        options={editorOptions}
         babelOptions={this.state.babelOptions}
         onBabelOptionsChange={
           (opts) => this.setState({ babelOptions: opts })
