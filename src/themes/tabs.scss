@@ -1,0 +1,86 @@
+@import "~react-toolbox/lib/_colors";
+@import "~react-toolbox/lib/_globals";
+@import "~react-toolbox/lib/_mixins";
+
+$editor-bg: #282C34;
+$color-primary: #6CAFF2;
+$tab-label-disabled-opacity: .2 !default;
+$tab-label-h-padding: 1.5 * $unit !default;
+$tab-label-height: 3.5 * $unit !default;
+$tab-text-height: 1 * $unit !default;
+$tab-label-v-padding: ($tab-label-height - $tab-text-height) / 2 !default;
+$tab-navigation-border-color: darken($editor-bg, 5%) !default;
+$tab-pointer-color: $color-primary !default;
+$tab-pointer-height: 3px !default;
+$tab-text: $color-white !default;
+$tab-text-color: $tab-text !default;
+$tab-text-inactive-color: rgba($tab-text, .7) !default;
+
+
+@mixin fill() {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  @include fill();
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  box-shadow: inset 0 -3px $tab-navigation-border-color;
+}
+
+.label {
+  letter-spacing: 1px;
+  padding: $tab-label-v-padding $tab-label-h-padding;
+  font-size: $tab-text-height;
+  font-weight: $font-weight-semi-bold;
+  line-height: 1;
+  color: $tab-text-inactive-color;
+  text-transform: uppercase;
+  transition-timing-function: $animation-curve-default;
+  transition-duration: $animation-duration;
+  transition-property: box-shadow, color;
+  &.active {
+    color: $tab-text-color;
+  }
+  &.disabled {
+    opacity: $tab-label-disabled-opacity;
+  }
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+  &.hidden {
+    display: none;
+  }
+}
+
+.pointer {
+  position: absolute;
+  width: 0;
+  height: $tab-pointer-height;
+  margin-top: - $tab-pointer-height;
+  background-color: $tab-pointer-color;
+  transition-timing-function: $animation-curve-default;
+  transition-duration: $animation-duration;
+  transition-property: left, width;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  @include fill();
+  padding: 0;//$tab-label-v-padding $tab-label-h-padding;
+  &:not(.active) {
+    display: none;
+  }
+  &.active {
+    display: block;
+  }
+}

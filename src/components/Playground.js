@@ -109,6 +109,7 @@ export default class Playground extends Component {
     const styles = {
       width: containerWidth,
       height: containerHeight,
+      border: 0,
       ...style
     }
 
