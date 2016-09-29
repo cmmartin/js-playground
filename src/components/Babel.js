@@ -30,7 +30,7 @@ export default function makeBabelHOC() {
       componentDidMount() {
         invariant(window.Babel, `
           Babel is not defined. You need to include babel-standalone.
-          https://npmcdn.com/babel-standalone/babel.min.js
+          https://unpkg.com/babel-standalone/babel.min.js
         `)
         this.setState(this._transform(this.props.code, this.props.babelOptions))
       }
